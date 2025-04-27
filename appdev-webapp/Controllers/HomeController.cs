@@ -8,14 +8,36 @@ namespace appdev_webapp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ExpensesDBContext _context; // read context for dependency injection
+
+        public HomeController(ILogger<HomeController> logger, ExpensesDBContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Expense()
+        {
+            var allExpenses = _context.Expenses.ToList();
+            return View(allExpenses);
+        }
+
+        public IActionResult CreateEditExpense()
+        {
+            return View();
+        }
+
+        public IActionResult CreateEditExpenseForm(Expense model)
+        {
+            _context.Expenses.Add(model);
+            _context.SaveChanges();
+
+            return RedirectToAction("Expense");
         }
 
         public IActionResult Privacy()

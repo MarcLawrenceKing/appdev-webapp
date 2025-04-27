@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Expenses";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Expenses</h1>
+    <p>View your expenses here.</p>
+    <a asp-controller="Home" asp-action="CreateEditExpense" class="btn btn-primary">Create New Expense</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Value </th>
+                <th> Description </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var expense in Model)
+                {
+                    <tr>
+                        <td> @expense.Id</td>
+                        <td> @expense.Value</td>
+                        <td> @expense.Description</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
