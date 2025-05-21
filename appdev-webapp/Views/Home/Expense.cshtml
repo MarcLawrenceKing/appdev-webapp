@@ -8,7 +8,13 @@
     <h1 class="display-4">Expenses</h1>
     <p>View your expenses here.</p>
     <a asp-controller="Home" asp-action="CreateEditExpense" class="btn btn-primary">Create New Expense</a>
-    <table class="table">
+    @if (!Model.Any())
+{
+        <p class="my-3"> <strong> No expense records found. </strong></p>
+}
+    else
+{
+    <table class="table my-3">
         <thead>
             <tr>
                 <th> ID </th>
@@ -35,4 +41,5 @@
             </tr>
         </tfoot>
     </table>
+ }
 </div>
