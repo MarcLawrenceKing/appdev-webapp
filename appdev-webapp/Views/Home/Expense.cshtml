@@ -2,6 +2,8 @@
     ViewData["Title"] = "Expenses";
 }
 
+@model List<appdev_webapp.Models.Expense>
+
 <div class="text-center">
     <h1 class="display-4">Expenses</h1>
     <p>View your expenses here.</p>
@@ -26,5 +28,11 @@
                 }
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <td><strong>Total: </strong></td>
+                <td colspan="2"> <strong>@Model.Sum(e => e.Value)</strong> </td>
+            </tr>
+        </tfoot>
     </table>
 </div>
