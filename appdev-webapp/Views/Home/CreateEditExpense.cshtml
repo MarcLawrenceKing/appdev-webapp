@@ -9,7 +9,10 @@
     
 </div>
 
-<form asp-action="CreateEditExpenseForm" asp-controller="Home">
+<form asp-action="CreateEditExpense" asp-controller="Home">
+
+    <!-- Hidden field to carry the ID when editing -->
+    <input type="hidden" asp-for="Id" />
 
     <label class="mt-4">Value</label>
     <input class="form-control" type="number" placeholder="Add Value" asp-for="Value" step="0.01"/>
