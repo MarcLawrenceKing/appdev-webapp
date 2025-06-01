@@ -23,7 +23,18 @@ namespace appdev_webapp.Controllers
 
         public IActionResult Dashboard()
         {
-            return View();
+            var expenses = _context.Expenses.ToList();
+
+            var viewModel = new Dashboard // dashboard model
+            {
+                ExpenseCount = expenses.Count,
+                TotalExpense = expenses.Sum(e => e.Value),
+                AverageExpense = expenses.Any() ? expenses.Average(e => e.Value) : 0,
+                MostExpensive = expenses.OrderByDescending(e => e.Value).FirstOrDefault()
+            };
+
+
+            return View(viewModel);
         }
 
 

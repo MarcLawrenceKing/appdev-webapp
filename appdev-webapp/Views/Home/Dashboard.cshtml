@@ -2,7 +2,67 @@
     ViewData["Title"] = "Dashboard";
 }
 
+@model Dashboard //not using namespace
+
 <div class="text-center">
     <h1 class="display-4">Dashboard</h1>
     <p> Summary of your expenses </p>
+
+    <div class="row g-4">
+        <!-- KPI 1 -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="text-start">
+                        <h6 class="mb-2 text-muted">No. of Expenses</h6>
+                        <h4 class="mb-0">@Model.ExpenseCount</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- KPI 2 -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="text-start">
+                        <h6 class="mb-2 text-muted">Amount Spent</h6>
+                        <h4 class="mb-0">@Model.TotalExpense</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- KPI 3 -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="text-start">
+                        <h6 class="mb-2 text-muted">Average Value per Item</h6>
+                        <h4 class="mb-0">@Model.AverageExpense</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="text-start">
+                        <h6 class="mb-2 text-muted">Most Expensive Item</h6>
+                            @if (Model.MostExpensive != null)
+                            {
+                                <h4 class="mb-0">@Model.MostExpensive.Description (@Model.MostExpensive.Value)</h4>
+
+                            }
+                            else
+                            {
+                                <h7 class="mb-0">No expenses found.</h7>
+                            }
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
