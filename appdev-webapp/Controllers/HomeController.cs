@@ -20,6 +20,18 @@ namespace appdev_webapp.Controllers
         {
             return View();
         }
+
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+
         // GET: Home/CreateEditExpenseForm/5 or Home/CreateEditExpenseForm
         public IActionResult CreateEditExpense(int? id)
         {
@@ -71,19 +83,6 @@ namespace appdev_webapp.Controllers
             var allExpenses = _context.Expenses.ToList();
             return View(allExpenses);
         }
-
-        //public IActionResult CreateEditExpense()
-        //{
-        //    return View();
-        //}
-
-        //public IActionResult CreateEditExpenseForm(Expense model)
-        //{
-        //    _context.Expenses.Add(model);
-        //    _context.SaveChanges();
-
-        //    return RedirectToAction("Expense");
-        //}
 
         public IActionResult Privacy()
         {
