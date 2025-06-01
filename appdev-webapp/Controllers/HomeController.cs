@@ -21,11 +21,6 @@ namespace appdev_webapp.Controllers
             return View();
         }
 
-        public IActionResult Profile()
-        {
-            return View();
-        }
-
         public IActionResult Dashboard()
         {
             return View();
