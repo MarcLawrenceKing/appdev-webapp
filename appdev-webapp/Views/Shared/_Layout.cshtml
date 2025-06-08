@@ -9,8 +9,15 @@
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/appdev_webapp.styles.css" asp-append-version="true" />
+    @* updated to prevent flickering *@
+    <script>
+        (function () {
+          const savedTheme = localStorage.getItem('theme') || 'light';
+          document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        })();
+    </script>
 </head>
-<body class ="d-flex flex-column" style="min-height: 100vh; margin: 0;" data-bs-theme="light" >
+<body class ="d-flex flex-column" style="min-height: 100vh; margin: 0;"  >
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -62,28 +69,24 @@
         </div>
     </footer>
 
+    @* updated to prevent flickering *@
     <script>
-        // Set theme on page load from localStorage
         window.onload = function () {
           const savedTheme = localStorage.getItem('theme') || 'light';
-          document.body.dataset.bsTheme = savedTheme;
-          // Set the checkbox state based on the saved theme
           document.getElementById('flexSwitchCheckChecked').checked = savedTheme === 'dark';
         };
 
         function myFunction() {
-          var element = document.body;
-          var currentTheme = element.dataset.bsTheme;
-          var newTheme = currentTheme === "light" ? "dark" : "light";
-          element.dataset.bsTheme = newTheme;
-          localStorage.setItem('theme', newTheme); // Save to localStorage
+          const newTheme = document.documentElement.getAttribute('data-bs-theme') === 'light' ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-bs-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
         }
     </script>
 
-    
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <!-- Latest Bootstrap 5.3.6 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+      
     @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
